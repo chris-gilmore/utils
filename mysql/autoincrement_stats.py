@@ -34,6 +34,7 @@ def main():
                         full_field_type = row["Type"]
                         unsigned = ("unsigned" in full_field_type)
                         for integer_type in ("tinyint", "smallint", "mediumint", "bigint", "int"):
+                            # Look for "int" last, since it is a substring of the other types
                             if integer_type in full_field_type:
                                 field_type = integer_type
                                 break
@@ -60,6 +61,8 @@ def main():
                             print "    max_value: %s" % (max_value)
                             print "    next_id:   %s" % (next_id)
                             print "    percent:   %s" % (percent)
+
+                        # Found autoincrement field, so break out of loop
                         break
 
     except Exception as e:
