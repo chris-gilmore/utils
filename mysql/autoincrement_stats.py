@@ -67,6 +67,7 @@ def main():
 
     except Exception as e:
         print >> sys.stderr, e
+        sys.exit(1)
     finally:
         if db:
             db.close()
